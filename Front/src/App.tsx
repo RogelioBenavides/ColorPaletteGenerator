@@ -1,9 +1,15 @@
-// import './App.css'
 import { Row, Col, Form, InputGroup, Button } from "react-bootstrap";
+import { sendRequest } from "./Services/sendRequest";
+import axios from "axios";
 
 function App() {
   const retrievedColors = '["#4285F4", "#34A853", "#FBBC05", "#EA4335"]';
   const colors = JSON.parse(retrievedColors);
+
+  const formHandler = async (event: any) => {
+    event.preventDefault();
+    const response = await sendRequest(event.target[0].value);
+  };
 
   return (
     <div>
@@ -16,6 +22,7 @@ function App() {
         ))}
       </Row>
       <Form
+        onSubmit={formHandler}
         style={{
           width: "100%",
           height: "100vh",
@@ -29,8 +36,8 @@ function App() {
           <Form.Control
             placeholder="Color Palette Description"
           />
-          <Button variant="primary" id="button-addon2">
-            Button
+          <Button variant="primary" id="button-addon2" type="submit">
+            Generate
           </Button>
         </InputGroup>
       </Form>
