@@ -39,7 +39,7 @@ function App() {
             }}
             onClick={() => {
               navigator.clipboard.writeText(color);
-              console.log("Copied to clipboard: ", color);
+              alert(`Copied to clipboard: , ${color}`);
             }}
           >
             <h1>{color}</h1>
